@@ -5,7 +5,7 @@ import { read } from "./apiUser";
 import DefaultProfile from "../images/avatar.jpg";
 import DeleteUser from "./DeleteUser";
 import FollowProfileButton from "./FollowProfileButton";
-// import ProfileTabs from "./ProfileTabs";
+import ProfileTabs from "./ProfileTabs";
 // import { listByUser } from "../post/apiPost";
 
 class Profile extends Component {
@@ -50,7 +50,7 @@ class Profile extends Component {
                 this.setState({ redirectToSignin: true });
             } else {
                 let following = this.checkFollow(data);
-                this.setState({ user: data, following });
+                this.setState({ user: data, following: following });
                 // this.loadPosts(data._id);
             }
         });
@@ -141,11 +141,11 @@ class Profile extends Component {
                         <p className="lead">{user.about}</p>
                         <hr />
 
-                        {/* <ProfileTabs
-              followers={user.followers}
-              following={user.following}
-              posts={posts}
-            /> */}
+                        <ProfileTabs
+                            followers={user.followers}
+                            following={user.following}
+                            // posts={posts}
+                        />
                     </div>
                 </div>
             </div>
