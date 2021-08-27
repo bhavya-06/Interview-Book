@@ -2,7 +2,7 @@ const express = require("express");
 const { userById, allUsers, getUser, updateUser, deleteUser, addFollowing,
     addFollower,
     removeFollowing,
-    removeFollower, hasAuthorization, userPhoto } = require("../controllers/user");
+    removeFollower, hasAuthorization, userPhoto, findPeople } = require("../controllers/user");
 const { requireSignin } = require('../controllers/auth');
 
 const router = express.Router();
@@ -16,6 +16,10 @@ router.put('/user/:userId', requireSignin, hasAuthorization, updateUser);
 router.delete('/user/:userId', requireSignin, hasAuthorization, deleteUser);
 // photo
 router.get("/user/photo/:userId", userPhoto);
+
+//follow people suggestion
+router.get('/user/findpeople/:userId', requireSignin, findPeople);
+
 
 // any route containing :userId, our app will first execute userByID()
 router.param("userId", userById);

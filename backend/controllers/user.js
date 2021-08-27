@@ -174,3 +174,17 @@ exports.removeFollower = (req, res) => {
             res.json(result);
         });
 };
+
+exports.findPeople = (req, res) => {
+    let alreadyFollowing = req.profile.following;
+    alreadyFollowing.push(req.profile._id);
+    User.find({ _id: { $nin: alreadyFollowing } }, (err, users) => {
+        if (err) {
+            return res.status(400).json({
+                error: err
+            })
+        }
+        res.json(users);
+    })
+        .select("name");
+};
