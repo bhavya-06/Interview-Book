@@ -40,19 +40,13 @@ class Posts extends Component {
         return (
             <div className="row">
                 {posts.map((post, i) => {
-                    const posterId = post.postedBy
-                        ? `/user/${post.postedBy._id}`
-                        : "";
-                    const posterName = post.postedBy
-                        ? post.postedBy.name
-                        : " Unknown";
+                    const posterId = post.postedBy ? `/user/${post.postedBy._id}` : "";
+                    const posterName = post.postedBy ? post.postedBy.name : " Unknown";
 
                     return (
                         <div className="card col-md-4" key={i}>
                             <div className="card-body">
-                                <img
-                                    src={`${process.env.REACT_APP_API_URL
-                                        }/post/photo/${post._id}`}
+                                <img src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}`}
                                     alt={post.title}
                                     onError={i =>
                                         (i.target.src = `${DefaultPost}`)
@@ -66,9 +60,9 @@ class Posts extends Component {
                                 </p>
                                 <br />
                                 <p className="font-italic mark">
-                                    Posted by{" "}
+                                    Posted by {" "}
                                     <Link to={`${posterId}`}>
-                                        {posterName}{" "}
+                                        {posterName} {" "}
                                     </Link>
                                     on {new Date(post.created).toDateString()}
                                 </p>

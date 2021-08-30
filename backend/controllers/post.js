@@ -32,7 +32,7 @@ exports.getPosts = (req, res) => {
     let posts = Post.find()
         .populate("postedBy", "_id name")
         .select("_id title body created")
-        .sort({ created: -1 })
+        .sort({ created: -1 }) //sorted based on latest first
         .then((posts) => {
             res.json(posts);
         })
@@ -131,3 +131,9 @@ exports.deletePost = (req, res) => {
         });
     });
 };
+
+exports.photo = (req, res, next) => {
+    res.set("Content-Type", req.post.photo.contentType);
+    return res.send(req.post.photo.data);
+    next();
+}
