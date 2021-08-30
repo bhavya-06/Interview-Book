@@ -115,7 +115,6 @@ class NewPost extends Component {
         const {
             title,
             body,
-            photo,
             user,
             error,
             loading,

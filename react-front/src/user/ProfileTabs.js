@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default class ProfileTabs extends Component {
 
     render() {
-        const { followers, following } = this.props;
+        const { followers, following, posts } = this.props;
 
         return (
             <div>
@@ -87,7 +87,24 @@ export default class ProfileTabs extends Component {
                     <div className="col-md-4">
                         <h3 className="text-primary">Posts</h3>
                         <hr />
-
+                        {
+                            posts.map((post, i) => {
+                                return (
+                                    <div key={i}>
+                                        <div>
+                                            <Link to={`/post/${post._id}`}>
+                                                
+                                                <div>
+                                                    <p className="lead">
+                                                        {post.title}
+                                                    </p>
+                                                </div>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                );
+                            })
+                        }
                     </div>
 
 
