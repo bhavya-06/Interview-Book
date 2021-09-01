@@ -3,6 +3,7 @@ import { singlePost, removePost } from './apiPost';
 import DefaultPost from "../images/mountains.jpg";
 import { Link, Redirect } from "react-router-dom";
 import { isAuthenticated } from '../auth';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 class SinglePost extends Component {
     state = {
@@ -59,7 +60,7 @@ class SinglePost extends Component {
                 />
 
                 <p className="card-text">
-                    {post.body}
+                    {ReactHtmlParser(post.body)}
                 </p>
                 <br />
                 <p className="font-italic mark">

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { list } from "./apiPost";
 import DefaultPost from "../images/mountains.jpg";
 import { Link } from "react-router-dom";
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 class Posts extends Component {
     constructor() {
@@ -41,7 +42,7 @@ class Posts extends Component {
                                 />
                                 <h5 className="card-title">{post.title}</h5>
                                 <p className="card-text">
-                                    {post.body ? post.body.substring(0, 100) : ""}
+                                    {post.body ? ReactHtmlParser(post.body.substring(0, 100)) : ""}
                                 </p>
                                 <br />
                                 <p className="font-italic mark">

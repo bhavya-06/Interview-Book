@@ -3,6 +3,11 @@ import { isAuthenticated } from "../auth";
 import { create } from "./apiPost";
 import { Redirect } from "react-router-dom";
 
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+
+
 class NewPost extends Component {
     constructor() {
         super();
@@ -14,8 +19,11 @@ class NewPost extends Component {
             user: {},
             fileSize: 0,
             loading: false,
-            redirectToProfile: false
+            redirectToProfile: false,
+            text: ""
         };
+
+        this.handleEditorChange = this.handleEditorChange.bind(this);
     }
 
     componentDidMount() {
@@ -38,6 +46,18 @@ class NewPost extends Component {
         }
         return true;
     };
+
+    handleEditorChange = (event, editor) => {
+        const data = editor.getData();
+        // this.setState({ body: data });
+        const name = "body";
+        this.setState({ error: "" });
+        const fileSize = name === "photo" ? event.target.files[0].size : 0;
+        this.postData.set(name, (data));
+        this.setState({ [name]: (data), fileSize });
+
+        // console.log(data);
+    }
 
     handleChange = name => event => {
         this.setState({ error: "" });
@@ -94,12 +114,18 @@ class NewPost extends Component {
 
             <div className="form-group">
                 <label className="text-muted">Body</label>
-                <textarea
+                {/* <textarea
                     onChange={this.handleChange("body")}
                     type="text"
                     className="form-control"
                     value={body}
+                /> */}
+
+                <CKEditor
+                    editor={ClassicEditor}
+                    onChange={this.handleEditorChange}
                 />
+                
             </div>
 
             <button
@@ -127,6 +153,7 @@ class NewPost extends Component {
 
         return (
             <div className="container">
+
                 <h2 className="mt-5 mb-5">Create a new post</h2>
                 <div
                     className="alert alert-danger"
@@ -144,6 +171,7 @@ class NewPost extends Component {
                 )}
 
                 {this.newPostForm(title, body)}
+                {/* {ReactHtmlParser(body)} */}
             </div>
         );
     }
