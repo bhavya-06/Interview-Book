@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { list } from "./apiPost";
-import DefaultPost from "../images/mountains.jpg";
+import DefaultPost from "../images/dummy-image.jpg";
 import { Link } from "react-router-dom";
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import ReactHtmlParser from 'react-html-parser';
 
 class Posts extends Component {
     constructor() {
@@ -52,12 +52,22 @@ class Posts extends Component {
                                     </Link>
                                     on {new Date(post.created).toDateString()}
                                 </p>
-                                <Link
-                                    to={`/post/${post._id}`}
-                                    className="btn btn-raised btn-primary btn-sm"
-                                >
-                                    Read more
-                                </Link>
+                                <div className="inline-block">
+                                    <Link
+                                        to={`/post/${post._id}`}
+                                        className="btn btn-raised btn-primary btn-sm"
+                                    >
+                                        Read more
+                                    </Link>
+
+                                    <b>
+                                        <i
+                                            className="fa fa-thumbs-up text-success bg-dark"
+                                            style={{ padding: '10px', borderRadius: '50%' }}
+                                        />{' '}
+                                        {post.likes.length} Like
+                                    </b>
+                                </div>
                             </div>
                         </div>
                     );
