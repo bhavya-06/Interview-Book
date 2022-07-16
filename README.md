@@ -6,7 +6,7 @@ Interview-Book can be used for sharing insightful information maybe related to l
 
 •	CRUD, Image Upload, User Posts Relationships, follow, unfollow, likes, comments and more
 
-•	Solid Authentication with Password Forgot/Password Reset using JWT
+•	Solid Authentication using JWT
 
 • Interactive User interface
 
