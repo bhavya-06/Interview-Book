@@ -27,7 +27,7 @@ MERN stack
 
 •	Bootstrap 4: A popular framework for building responsive, mobile-first sites.
 
-# Screenshots 
+# Project Demo / Screenshots 
 ![image](https://user-images.githubusercontent.com/57637247/179368765-42fd2b12-7cd9-401c-a28b-df2dd98cc4d3.png)
 
 ![image](https://user-images.githubusercontent.com/57637247/179368770-17c02526-a7cc-4675-8859-71f1acb8811b.png)
